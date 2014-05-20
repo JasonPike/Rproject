@@ -21,32 +21,42 @@ support<-2;#支持度设为2
 data<-read.csv("Apriori/data.csv",sep = ",",row.names=1, fill = TRUE,header=FALSE,col.names = paste0("V", 1:5));
 rows<-length(data[,1]);
 cols<-length(data[1,]);
-c1<-matrix(0,nrow=0,ncol=2);
+C1<-matrix(0,nrow=0,ncol=2);
 for(i in 1:rows){
   for(j in 1:cols){
-    
     tmp<-data[i,j];
     tmpstr<-as.character(tmp[[1]]);
     isemp<-isEmptyStr(tmpstr);
     if(isemp)next
-    index<-which(c1[,1]==tmpstr);
+    index<-which(C1[,1]==tmpstr);
      if(length(index)==0){
        t1<-cbind(tmpstr,'1');
-       c1<-rbind(c1,t1);
+       C1<-rbind(C1,t1);
      }else{
-       tmp2<-as.numeric(c1[index,2])+1;
-       c1[index,2]<-tmp2;
+       tmp2<-as.numeric(C1[index,2])+1;
+       C1[index,2]<-tmp2;
      }
   }
 }
-l1<-c1[order(c1[,1]),]
-c1rows<-length(c1[,1]);
-for(i in 1:c1rows){
- 
-  tmp3<-as.numeric(c1[i,2]);
+L1<-C1[order(C1[,1]),]
+C1rows<-length(C1[,1]);
+for(i in 1:C1rows){
+  tmp3<-as.numeric(C1[i,2]);
   if(tmp3<support){
-    index<-which(l1[,1]==c1[i,1])
-    l1<-l1[-index,];
+    index<-which(L1[,1]==C1[i,1])
+    L1<-L1[-index,];
   }
 }
-  
+C2<-t(combn(L1[,1],2))#产生C2连接
+#对C2剪枝产生L2
+
+
+
+
+
+
+
+
+
+
+
