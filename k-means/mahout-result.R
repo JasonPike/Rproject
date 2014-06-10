@@ -1,0 +1,8 @@
+c1<-read.csv(file="k-means/cluster1.csv",sep=",",header=FALSE)
+c2<-read.csv(file="k-means/cluster2.csv",sep=",",header=FALSE)
+c3<-read.csv(file="k-means/cluster3.csv",sep=",",header=FALSE)
+y<-rbind(c1,c2,c3)
+cols<-c(rep(1,nrow(c1)),rep(2,nrow(c2)),rep(3,nrow(c3)))
+plot(y, col=c("black","blue","green")[cols])
+center<-matrix(c(1.631, -0.412,-2.953, -0.971,0.219, 2.600),ncol=2,byrow=TRUE)
+points(center, col="violetred", pch = 19)
