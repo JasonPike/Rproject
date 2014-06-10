@@ -21,7 +21,7 @@ de<-1-d/Arow;
 delta <- (1-d)/Arow;
 B <- matrix(delta,nrow(A),ncol(A));
 for (i in 1:Arow) B[i,] <- B[i,] + d*A[i,]/csum;
-# 迭代求解特征向量值
+# 迭代求解特征向量值，收敛后不用再迭代
 x <- rep(1,Arow);
 for (i in 1:100) x <- B %*% x
 x/sum(x)
